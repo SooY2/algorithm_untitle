@@ -1,4 +1,6 @@
 //셀프넘버
+//시간복잡도 : O(1)..?
+//공간복잡도 : O()
 #include <iostream>
 using namespace std;
 #include <string>
@@ -21,7 +23,7 @@ int main(){
 
     for(int i=1;i<=10000;i++){
         int a=d(i);//함수 실행
-        if(a<10001)//???
+        if(a<10001)
             selfnums[a]=true;//함수의 결과로 나온 수는 셀프넘버가 아니므로 true표시
     }
     
