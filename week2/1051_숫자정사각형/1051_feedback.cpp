@@ -1,8 +1,8 @@
 /*
 NxM직사각형에서 가로와 세로 중 짧은것의 길이의 정사각형부터 변의 길이를 줄여가며 각 모서리의 값 같으면 그때의 변의 길이로 크기 구하기
 
-시간복잡도: O(n^2)
-공간복잡도: O(N*M+6)
+시간복잡도: O(N^3) minval(N*M) 이 무한대로 크다고 가정하면 N^3
+공간복잡도: O(N*M+5)
 */
 
 #include <iostream>
@@ -16,12 +16,11 @@ using namespace std;
 int main() {
     int N, M;//
     cin >> N >> M;
-    string s;//행을 string으로 입력받아 정수형으로 바꿔줄거임
 
 
     vector<vector <char>> r(N,vector<char>(M,0)); ;//NxM 0으로 초기화 한 2차원벡터 생성
     // 이 문제에선 배열안의 값으로 연산하지 않고 안의 값이 같은지 다른지만 판단하므로 char형을 써도 됨. 
-    // int형으로 하면 string형식으로 받아 변환하는 과정 필요
+    // int형 벡터로 하면 string변수로 받아 변환하는 과정 필요
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < M; j++) {
             cin>>r[i][j];//배열에 입력받기
@@ -29,7 +28,7 @@ int main() {
     }
 
     int size = 1;//기본 사이즈를 1로 설정 
-    int minval = min(N,M);//(N <= M) ? N : M; 
+    int minval = min(N,M); //(N <= M) ? N : M; 
     bool st = true;// 가장 큰 변부터 검사할 것이므로 만약 모서리가 같은 경우가 나오면 while문을 빠져나오도록 하기 위한 bool형 변수
     while (st) //st가 true일때
     {
@@ -37,7 +36,9 @@ int main() {
             for (int j = 0; j < M - minval + 1; j++) {
                 //cout<<r[i][j]<<r[i][j+minval-1]<<r[i+minval-1][j]<<r[i+minval-1][j+minval-1]<<endl; //모서리 확인코드
                 if (r[i][j] == r[i][j + minval - 1] && r[i][j] == r[i + minval - 1][j] && r[i][j] == r[i + minval - 1][j + minval - 1]) {//모서리가 같으면
-                    size = minval * minval;//size= 정사각형 크기                        
+                    if(minval*minval >size){// 해도 되고 안해도 ok 
+                        size = minval * minval;//size= 정사각형 크기 
+                    }      
                     st = false; //가장 큰 정사각형 찾았으므로
                 }
             }
