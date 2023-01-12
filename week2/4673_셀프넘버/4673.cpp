@@ -2,8 +2,9 @@
 //시간복잡도 : O(1)..?
 //공간복잡도 : O()
 #include <iostream>
-using namespace std;
 #include <string>
+using namespace std;
+
 
 
 int d(int n){ //n과 n의 각 자리수 더한 값
