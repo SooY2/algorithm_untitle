@@ -30,7 +30,7 @@ int main(){
         q.pop();
         for(int i=1;i<=n;i++){
             for(int j=0;j<connect[pos].size();j++){
-                poslinked=connect[pos][j];
+                poslinked=connect[pos][j];//연결된 노드번호
                 if(visited[poslinked]!=1){
                     q.push(poslinked);
                     visited[poslinked]=1;
