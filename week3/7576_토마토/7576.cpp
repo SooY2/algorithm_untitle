@@ -32,7 +32,7 @@ using namespace std;
 int n,m;
 int pos_x,pos_y,nx,ny;
 int r[2][4]={{-1,1,0,0},{0,0,-1,1}};
-int days[1000][1000]={0};//며칠째에 익는지 일수 저장할 배열
+int days[1000][1000]={0};//며칠째에 익는지 일수 저장할 배열 // 딱히 배열 생성안하고 box에 ++
 bool visited[1000][1000]={0};
 vector<vector <int>> box;
 //vector<vector <bool>> visited;
@@ -91,7 +91,7 @@ int main(){
     int result =0;
     for(int i=0;i<m;i++){
         for(int j=0;j<n;j++){
-            if(box[i][j]==0&&days[i][j]==0){
+            if(box[i][j]==0&&days[i][j]==0){//for문 안돌고 변수하나 해서 익을때마다 ++해주는 방법도 있음
                 cout<< -1;
                 return 0;
             }
