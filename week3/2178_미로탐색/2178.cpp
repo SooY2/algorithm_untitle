@@ -12,7 +12,9 @@
 시간복잡도 O(n*m)
 
 */
-
+/*
+거리 따로 배열 선언안해주고 miro에+=로 거리 저장하면 메모리 줄일 수 있음!
+*/
 #include <iostream>
 #include <queue>
 using namespace std;
