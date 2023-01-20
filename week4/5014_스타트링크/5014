@@ -1,0 +1,57 @@
+/*5014 스타트링크
+
+너비우선탐색으로 (큐의 첫번째 값이 G이면 탈출)
+방문안했고, 1<=1000000사이면  x+u,x-d탐색
+큐팝하고 큐가 비었으면 use the stair 출력
+
+질문: 처음 bfs를 도는 값은 방문체크를 안해도 문제가 없음 근데 틀림 방문체크하니까 맞음
+    만약 돌다가 그 값을 큐에 넣어도 그 값에서 탐색할게 없어서(처음에 두 값을 방문체크 하니까) 문제 없지 않나..?
+
+*/
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int f,s,g,u,d;
+int cnt[1000001];
+
+bool inside(int x){
+    return (x>0&&x<=f);
+}
+
+void bfs(int x){
+    queue<int> q;
+    q.push(x);
+    cnt[x]=1;
+    int pos;
+    while(!q.empty()){ //큐의 맨앞이 g도착점이면 탈출
+        pos=q.front();
+        q.pop();
+        if(inside(pos+u)&&cnt[pos+u]==0){//안에있고 누른적 없으면
+            q.push(pos+u);
+            cnt[pos+u]=cnt[pos]+1;
+            if(pos+u==g) return;
+        }
+        if(inside(pos-d)&&cnt[pos-d]==0){
+            q.push(pos-d);
+            cnt[pos-d]=cnt[pos]+1;
+            if(pos-d==g) return;
+        }
+    }
+    return;
+}
+
+int main(){
+
+    cin>>f>>s>>g>>u>>d;
+
+    if(s!=g){
+        bfs(s);
+        if(cnt[g]!=0) cout<<cnt[g]-1;
+        else cout<<"use the stairs";
+    }else if (s==g){
+        cout<<0;
+    }
+
+    return 0;
+}
