@@ -10,6 +10,9 @@ bfs로 3군데 검사x-1,x+1,2*x 큐에 넣어주기
 push하는게 동생위치k면 종료
 
 그때 시간s출력
+
+++
+depth세는법 - q.size()만큼 for문돌고 depth++해주는 방법도 있음
 */
 #include <iostream>
 #include <deque>
