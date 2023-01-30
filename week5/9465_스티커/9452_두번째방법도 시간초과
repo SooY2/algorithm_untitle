@@ -1,0 +1,44 @@
+//스티커
+/*
+1357...
+2468... 
+순으로 검사하며 0행이면 앞서 저장한 벡터의 마지막인덱스-1 값 제외하고 최대 찾기
+                1행이면 앞서 저장한 벡터의 마지막 두 원소 제외하고 최대값 찾기
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n,x,y,m;
+        cin>>n;
+        //vector<vector <int>> v(2,vector<int>(n,0));
+        int v[2][1000000];
+
+        for(int i=0;i<2;i++){
+            for(int j=0;j<n;j++){
+                cin>>v[i][j];
+            }
+        }
+
+        vector<int> dp;
+        dp.push_back(v[0][0]);
+        dp.push_back(v[1][0]);
+
+        for(int i=1;i<n;i++){
+            m=max(*max_element(dp.begin(),dp.end()-2),dp.back());//뒤에서 하나 빼고 젤 큰거찾기
+            dp.push_back(m+v[0][i]);
+            m=*max_element(dp.begin(),dp.end()-2);//맨 뒤에거 두개 빼고 최댓값 찾기
+            dp.push_back(m+v[1][i]);
+        }
+        cout<<*max_element(dp.end()-1,dp.end())<<"\n";
+    }
+    return 0;
+}
