@@ -34,7 +34,7 @@ n|  ...n줄
 #include <algorithm>
 using namespace std;
 
-int n, rgb[1000][3] ,D[1000][3],min_idx;
+int n, rgb[1000][3] ,D[1000][3];
 
 void input(){//rgb배열에 값 입력받기
     cin>>n;
