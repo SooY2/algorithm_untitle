@@ -17,6 +17,7 @@ n|  ...n줄
 2. n번째의 g= dp[n-1]의 b와 r중 작은거 + rgb의 g값
 3. n번째의 b= dp[n-1]의 r와 g중 작은거 + rgb의 b값
 
+시간복잡도 : O(n)
 
 
 ****처음 생각한 풀이****
@@ -34,7 +35,7 @@ n|  ...n줄
 #include <algorithm>
 using namespace std;
 
-int n, rgb[1000][3] ,D[1000][3];
+int n, rgb[1000][3] ,D[1000][3];//rgb: 입력받을 배열, D:계산한걸 저장할 배열
 
 void input(){//rgb배열에 값 입력받기
     cin>>n;
