@@ -1,0 +1,33 @@
+//12865 평범한 배낭
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int dp[101][100001];
+int b[101][2];
+
+int main(){
+    int n,k;//물품의 수, 버틸 수 있는 무게
+    cin>>n>>k;
+
+    for(int i=1;i<=n;i++){
+            cin>>b[i][0];
+            cin>>b[i][1];//b에 [무게][가치]넣어주기 인덱스는 1부터
+    }
+
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=k;j++){//배낭의 최대무게
+        if(j>=b[i][0]){//최대 배낭무게보다 물건무게가 작은경우(넣을 수 있는경우)
+            (dp[i-1][j]>=dp[i-1][j-b[i][0]]+b[i][1]) ? dp[i][j]=dp[i-1][j]: dp[i][j]=dp[i-1][j-b[i][0]]+b[i][1];
+        }else{//최대 배낭 무게가 보다 물건무게가 큰 경우(못넣음)
+            if(dp[i-1][j]!=0) dp[i][j]=dp[i-1][j];
+            
+        }
+            
+        }
+    }
+
+    cout<<dp[n][k];
+
+    return 0;
+}
