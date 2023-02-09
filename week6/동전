@@ -1,0 +1,41 @@
+//동전
+/*
+만들 수 있는 개수 저장해놓기
+ex)
+5,7로 22원 만들기
+1원부터 22원 만드는 개수 배열에 저장
+*/
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int coin[21];
+int t,n,m;
+
+int main(){
+
+    cin>>t;
+
+    while(t--){
+        int dp[10001]={0};
+        dp[0]=1;
+        cin>>n;
+        for(int i=1;i<=n;i++){
+            cin>>coin[i];
+        }//동전 입력받기
+        cin>>m;
+
+        for(int i=1;i<=n;i++){
+            for(int j=coin[i];j<=m;j++){
+                dp[j]+=dp[j-coin[i]];
+            }
+        }
+        
+
+        cout<<dp[m]<<"\n";
+
+    }
+
+    return 0;
+}
